@@ -2,44 +2,79 @@
 import time
 
 from nicegui import ui
+from nicegui import events
 
 columns = [
-    {'name': 'name', 'label': 'Name', 'field': 'name', 'required': True},
-    {'name': 'age', 'label': 'Age', 'field': 'age', 'sortable': True},
+    {"name": "name", "label": "Team", "field": "name", "sortable": True},
+    {
+        "name": "points",
+        "label": "Points",
+        "field": "points",
+        "sortable": True,
+    },
 ]
-rows = [
-    {'id': 0, 'name': 'Alice', 'age': 18},
-    {'id': 1, 'name': 'Bob', 'age': 21},
-    {'id': 2, 'name': 'Lionel', 'age': 19},
-    {'id': 3, 'name': 'Michael', 'age': 32},
-    {'id': 4, 'name': 'Julie', 'age': 12},
-    {'id': 5, 'name': 'Livia', 'age': 25},
-    {'id': 6, 'name': 'Carol'},
+teams = [
+    {
+        "id": idx,
+        "name": f"Team {idx+1}",
+        "points": 0
+    
+    }
+    for idx in range(5)
 ]
 
-with ui.table(title='Teams', columns=columns, rows=rows).classes('w-96') as table:
-    with table.add_slot('top-right'):
-        with ui.input(placeholder='Search').props('type=search').bind_value(table, 'filter').add_slot('append'):
-            ui.icon('search')
-    with table.add_slot('bottom-row'):
-        with table.row():
-            with table.cell():
-                ui.button(on_click=lambda: (
-                    table.add_row({'id': time.time(), 'name': new_name.value, 'age': new_age.value}),
-                    new_name.set_value(None),
-                    new_age.set_value(None),
-                ), icon='add').props('flat fab-mini')
-            with table.cell():
-                new_name = ui.input('Name')
-            with table.cell():
-                new_age = ui.number('Age')
+team_table = ui.table(
+    title="Scores",
+    rows=teams,
+    row_key="id",
+    columns=columns,
+).classes(
+    "w-1/3"
+)  # Set the width of the table
 
-        with table.row():
-            with table.cell():
-                ui.button(on_click=lambda: (rows[0].update({'age': 99}), table.update()))
+def edit_val(e: events.GenericEventArguments) -> None:
+    for row in teams:
+        if row["id"] == e.args["id"]:
+            row.update(e.args)
+    team_table.update()
 
-ui.label().bind_text_from(table, 'selected', lambda val: f'Current selection: {val}')
-ui.button('Remove', on_click=lambda: table.remove_rows(table.selected)) \
-    .bind_visibility_from(table, 'selected', backward=lambda val: bool(val))
+
+team_table.add_slot(
+    "body",
+    r"""
+    <q-tr :props="props">
+        <q-td key="name" :props="props">
+            {{ props.row.name }}
+            <q-popup-edit v-model="props.row.name" v-slot="scope"
+                @update:model-value="() => $parent.$emit('edit_val', props.row)"
+            >
+                <q-input v-model="scope.value" dense autofocus counter @keyup.enter="scope.set" />
+            </q-popup-edit>
+        </q-td>
+        <q-td key="points" :props="props">
+            {{ props.row.points }}
+            <q-popup-edit v-model="props.row.points" v-slot="scope"
+                @update:model-value="() => $parent.$emit('edit_val', props.row)"
+            >
+                <q-input v-model.number="scope.value" type="number" dense autofocus counter @keyup.enter="scope.set" />
+            </q-popup-edit>
+        </q-td>
+    </q-tr>
+""",
+)
+
+team_table.on('edit_val', edit_val)
+
+with team_table.row():
+    with team_table.cell():
+        new_team_name = ui.input("team name")
+    with team_table.cell():
+        ui.button(
+            "Add",
+            on_click=lambda: (
+                team_table.add_row({"name": new_team_name.value, "points": 0}),
+                new_team_name.set_value(""),  # Clear input after adding
+            ),
+        )
 
 ui.run()
