@@ -39,13 +39,19 @@ def _generate_question_raw():
             # 11 m/s
         },
         {
-            "txt": "How many attendees came to infocomm last year?",
-            "source": "infocomm.com?",
-            # TODO
+            "txt": "How many verified attendees were there at InfoComm 2024?",
+            "source": "infocommshow.org",
+            # 30,271
         },
         {
             "txt": "How many part numbers are in our SAP instance?",
             "source": "Local SAP Wizards",
+            # ???
+        },
+        {
+            "txt": "In which year was the first commerciailly available video conference system, the AT&T Picturephone (Mod I), released?",
+            "source": "wikipedia.org",
+            # 1964
         },
         {
             "txt": "In what year was IEEE founded?",
@@ -70,12 +76,12 @@ def _generate_question_raw():
         {
             "txt": "In decibels, During take off, what is the estimated peak noise level of a F-35 Lightning II?",
             "source": "healthvermont.gov",
-            #
+            # 115 dB
         },
         {
             "txt": "In meters, what is the diameter of the optical element of the  Gran Telescopio Canarias telescope?",
             "source": "wikipedia.org",
-            #
+            # 10.4 m
         },
     ]
 
