@@ -39,29 +39,34 @@ def _generate_question_raw():
             # 11 m/s
         },
         {
+            "txt": "In what year was IEEE founded?",
+            "source": "ieee.org",
+            # 1963 (1/1/63)
+        },
+        {
+            "txt": "How many unique part numbers do we currently build in Minnetonka (999- and 998- levels)?",
+            "source": "SAP",
+            # 1816
+        },
+        {
             "txt": "How many verified attendees were there at InfoComm 2024?",
             "source": "infocommshow.org",
             # 30,271
         },
         {
-            "txt": "How many part numbers are in our SAP instance?",
-            "source": "Local SAP Wizards",
-            # ???
+            "txt": "The Pistol Shrimp is capable of producing a sound that can reach up to how many decibels?",
+            "source": "ifaw.org",
+            # 189 dB
         },
         {
-            "txt": "In which year was the first commerciailly available video conference system, the AT&T Picturephone (Mod I), released?",
-            "source": "wikipedia.org",
-            # 1964
+            "txt": "What are the middle 4 digits of the Vaddio WEBBi part number?",
+            "source": "WEBBi manual",
+            # 8700 (999-8700-000)
         },
         {
-            "txt": "In what year was IEEE founded?",
-            "source": "ieee.org",
-            # 1/1/63
-        },
-        {
-            "txt": "In GHz, what is the frequency range of IEEE 802.11ac?",
-            "source": "ieee.org",
-            # 5 GHz band
+            "txt": "How many unique part numbers are inventoried in the Minnetonka warehouse?",
+            "source": "SAP",
+            # 6959
         },
         {
             "txt": "In what year was IEEE 802.11 first released?",
@@ -69,15 +74,25 @@ def _generate_question_raw():
             # 1997
         },
         {
+            "txt": "In which year was the first commerciailly available video conference system, the AT&T Picturephone (Mod I), released?",
+            "source": "wikipedia.org",
+            # 1964
+        },
+        {
             "txt": "How many brands are listed on the 'About Us' on the AVD website?",
             "source": "legrandav.com",
             # 10
         },
-        {
-            "txt": "In decibels, During take off, what is the estimated peak noise level of a F-35 Lightning II?",
-            "source": "healthvermont.gov",
-            # 115 dB
-        },
+        # {
+        #     "txt": "In GHz, what is the frequency range of IEEE 802.11ac?",
+        #     "source": "ieee.org",
+        #     # 5 GHz band
+        # },
+        # {
+        #     "txt": "In decibels, during take off, what is the estimated peak noise level of a F-35 Lightning II?",
+        #     "source": "healthvermont.gov",
+        #     # 115 dB
+        # },
         {
             "txt": "In meters, what is the diameter of the optical element of the  Gran Telescopio Canarias telescope?",
             "source": "wikipedia.org",
