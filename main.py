@@ -4,7 +4,7 @@ import time
 from nicegui import ui
 from nicegui import events
 
-default_teams = 5
+default_teams = 0
 
 columns = [
     {"name": "name", "label": "Team", "field": "name", "sortable": True},
