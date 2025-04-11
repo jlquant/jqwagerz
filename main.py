@@ -116,7 +116,7 @@ def _make_score_table():
             ui.button(
                 "Add",
                 on_click=lambda: (
-                    team_table.add_row({"name": new_team_name.value, "points": 0}),
+                    team_table.add_row({"name": new_team_name.value, "points": 0, "id": len(teams)}),
                     new_team_name.set_value(""),  # Clear input after adding
                 ),
             )
